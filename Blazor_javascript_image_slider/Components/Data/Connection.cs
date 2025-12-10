@@ -2,11 +2,6 @@
 {
     public class Connection
     {
-        public string conectionString = "";
-
+        public string connectionString = "";
     }
-
-
-
-
 }

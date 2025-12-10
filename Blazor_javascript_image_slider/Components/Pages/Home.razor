@@ -1,7 +1,24 @@
 ﻿@page "/"
 
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+@code{
+
+	Data.DataAdd dataAdd;
+
+	protected override async Task OnInitializedAsync()
+	{
+		// Initialization logic here
+		var conn = Configuration.GetConnectionString("DefaultConnection");
+		dataAdd = new Data.DataAdd(conn);
+
+		await dataAdd.fetchData();
+	}
+
+}

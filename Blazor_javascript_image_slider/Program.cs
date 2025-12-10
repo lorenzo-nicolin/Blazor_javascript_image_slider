@@ -14,7 +14,8 @@ var app = builder.Build();
 
 //var mySetting = builder.Configuration["ConnectionStrings"];
 
-var  = builder.Configuration.GetConnectionString("DefaultConnection");
+var connection = new Connection();
+connection.connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 // or
 var defaultConn2 = builder.Configuration["ConnectionStrings:DefaultConnection"];
 
