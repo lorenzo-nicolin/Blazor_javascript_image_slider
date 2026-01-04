@@ -40,5 +40,40 @@ namespace Blazor_javascript_image_slider.Components.Data
 
             return result;
         }
+
+        public async Task<List<Model.Customers>> GetCustomers()
+        {
+            List<Model.Customers> result = new List<Model.Customers>();
+            using var conn = GetConnection();
+
+            string sql = "SELECT * FROM [Customers]";
+
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                await conn.OpenAsync();
+                SqlDataReader reader = await cmd.ExecuteReaderAsync();
+
+                while (await reader.ReadAsync())
+                {
+                    var customer = new Model.Customers
+                    {
+
+                        FirstName = reader["FirstName"]?.ToString(),
+                        LastName = reader["LastName"]?.ToString()
+
+                    };
+
+                    result.Add(customer);
+
+               
+                }
+            }
+
+
+
+            return result;
+        }
+
+
     }
 }
